@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Section 1</title>
+  <meta id="xcode-display" name="xcode-display" content="render">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, maximum-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="stylesheet.css">
+</head>
+<body>
+<div class="content-wrapper">
+  <section class="section">
+    <h1 id="-9-turtle-tracks-http-www-puzzlenode-com-puzzles-9-turtle-tracks-"><a href="http://www.puzzlenode.com/puzzles/9-turtle-tracks">9. Turtle Tracks</a></h1>
+<p><em>This puzzle was contributed by Gregory Brown &amp; Andrea Singh and published on July 14, 2011</em></p>
+<p>Logo is a programming language created mainly for educational purposes in 1967. It is probably best known for <a href="http://en.wikipedia.org/wiki/Turtle_graphics">Turtle graphics</a>. These are drawings created using a on-screen cursor - often represented by a turtle icon - whose movements are controlled by a set of simple commands. </p>
+<p>The two main attributes of the turtle are position and orientation. Its movements are always relative to its current position, while the direction is determined by the turtle&#39;s orientation. For example, a command such as &quot;forward 10&quot; will move the turtle 10 units from its current position and in the facing direction. To make the turtle face in a different direction, you&#39;d have to issue a command like &quot;left 90&quot;. The number 90 refers to the angle that the turtle should pivot by, which in this case would be 90 degrees counterclockwise.</p>
+<p>Your task is to write a Logo-like program that is capable of producing ASCII art. You will be provided with an input file containing a list of commands which when parsed and executed should produce an ASCII drawing. </p>
+<h2 id="the-list-of-commands">The List of Commands</h2>
+<p>There is a small number of commands that you need to take into account:</p>
+<ul>
+<li><strong>FD x</strong>: tells the turtle to move forward by x units</li>
+<li><strong>RT x</strong>: change the turtle&#39;s current orientation by x degrees clockwise</li>
+<li><strong>LT x</strong>: change the turtle&#39;s current orientation by x degrees counterclockwise</li>
+</ul>
+<p>For simplicity&#39;s sake, in this exercise the angle of rotation will be restricted to multiples of 45. That is 45, 90, 135, etc.</p>
+<ul>
+<li><strong>BK x</strong>: tells the turtle to move backwards by x units, keeping its current orientation</li>
+<li><strong>REPEAT x [...]</strong>: tells the turtle to repeat the movements defined within the square brackets x times. You don&#39;t need to worry about handling nested <code>REPEAT</code> statements, since there won&#39;t be any in the input files.</li>
+</ul>
+<h2 id="the-input-format">The Input Format</h2>
+<p>The input file consists of two parts: the canvas size that the drawing should be printed on and a list of Logo commands like the ones described in the previous section. The first line of the input file always indicates the canvas size followed by a blank line and then the list of commands.</p>
+<p>The canvas is square, so the number specifying the canvas size refers to both the width and the height of the canvas. See below an example of an input file for an 11 x 11 canvas.</p>
+<pre><code>11
+
+RT 90
+FD 5
+RT 135
+FD 5
+</code></pre><h2 id="the-output-format">The Output Format</h2>
+<p>The canvas can be thought of as a grid. Empty cells are represented by periods. Columns are separated by a space, while rows are separated by a new line.</p>
+<p>As the turtle moves, each line segment is drawn by an <code>X</code> for each point the turtle has traveled across. The turtle is initially placed in the center of the grid and is facing upwards. That initial point should automatically be marked with an <code>X</code>, even before any commands are run.</p>
+<p>So this would be the turtle on an 11 x 11 grid and in its starting position at the center point of the grid:</p>
+<pre><code>. . . . . . . . . . .
+. . . . . . . . . . .
+. . . . . . . . . . .
+. . . . . . . . . . .
+. . . . . . . . . . .
+. . . . . X . . . . .
+. . . . . . . . . . .
+. . . . . . . . . . .
+. . . . . . . . . . .
+. . . . . . . . . . .
+. . . . . . . . . . .
+</code></pre><p>And here&#39;s the output after the simple input program has run.</p>
+<pre><code>. . . . . . . . . . .
+. . . . . . . . . . .
+. . . . . . . . . . .
+. . . . . . . . . . .
+. . . . . . . . . . .
+. . . . . X X X X X X
+. . . . . . . . . X .
+. . . . . . . . X . .
+. . . . . . . X . . .
+. . . . . . X . . . .
+. . . . . X . . . . .
+</code></pre><h2 id="example">Example</h2>
+<p>To get our turtle warmed up, we can set him the task of drawing the basic outline of our coat of arms - the Mendicant University logo! </p>
+<p>Here are the commands that will output the shape of a ruby gem when correctly executed:</p>
+<pre><code>61
+
+RT 135
+FD 5
+REPEAT 2 [ RT 90 FD 15 ]
+RT 90
+FD 5
+RT 45
+FD 20
+</code></pre><p>The first line tells us that our drawing pad is a 61 x 61 grid. We then place the turtle at the center point of the canvas facing upwards.</p>
+<p>The first command issued to the turtle is to pivot by 135 degrees right or clockwise. It should then move 5 units forward. During that move it draws the first line. Looking at the current results, we should see something like this (Note that we zoomed in to the section of the grid right around the turtle):</p>
+<pre><code>. . X . . . . . . .
+. . . X . . . . . .
+. . . . X . . . . .
+. . . . . X . . . .
+. . . . . . X . . .
+. . . . . . . X . .
+</code></pre><p>The next command <code>REPEAT 2 [ Rt 90 Fd 15 ]</code> will tell the turtle to turn right by 90 degrees <em>and</em> move forward 15 units two times in succession. Our output should look something like this:</p>
+<pre><code>. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+. . . . . . . . . . . . . . . . . . . . . . . . . X . . . . . . 
+. . . . . . . . . . . . . . . . . . . . . . . . . . X . . . . .
+. . . . . . . . . . . . . . . . . . . . . . . . . . . X . . . .
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . X . . .
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . X . .
+X . . . . . . . . . . . . . . . . . . . . . . . . . . . . . X .
+. X . . . . . . . . . . . . . . . . . . . . . . . . . . . X . .
+. . X . . . . . . . . . . . . . . . . . . . . . . . . . X . . .
+. . . X . . . . . . . . . . . . . . . . . . . . . . . X . . . .
+. . . . X . . . . . . . . . . . . . . . . . . . . . X . . . . .
+. . . . . X . . . . . . . . . . . . . . . . . . . X . . . . . .
+. . . . . . X . . . . . . . . . . . . . . . . . X . . . . . . .
+. . . . . . . X . . . . . . . . . . . . . . . X . . . . . . . .
+. . . . . . . . X . . . . . . . . . . . . . X . . . . . . . . .
+. . . . . . . . . X . . . . . . . . . . . X . . . . . . . . . .
+. . . . . . . . . . X . . . . . . . . . X . . . . . . . . . . .
+. . . . . . . . . . . X . . . . . . . X . . . . . . . . . . . .
+. . . . . . . . . . . . X . . . . . X . . . . . . . . . . . . .
+. . . . . . . . . . . . . X . . . X . . . . . . . . . . . . . .
+. . . . . . . . . . . . . . X . X . . . . . . . . . . . . . . .
+. . . . . . . . . . . . . . . X . . . . . . . . . . . . . . . .
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+</code></pre><p>Then, we turn the turtle again by 90 degrees and walk forward 5:</p>
+<pre><code>. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+. . . . . X . . . . . . . . . . . . . . . . . . . X . . . . . .
+. . . . X . . . . . . . . . . . . . . . . . . . . . X . . . . .
+. . . X . . . . . . . . . . . . . . . . . . . . . . . X . . . .
+. . X . . . . . . . . . . . . . . . . . . . . . . . . . X . . .
+. X . . . . . . . . . . . . . . . . . . . . . . . . . . . X . .
+X . . . . . . . . . . . . . . . . . . . . . . . . . . . . . X .
+. X . . . . . . . . . . . . . . . . . . . . . . . . . . . X . .
+. . X . . . . . . . . . . . . . . . . . . . . . . . . . X . . .
+. . . X . . . . . . . . . . . . . . . . . . . . . . . X . . . .
+. . . . X . . . . . . . . . . . . . . . . . . . . . X . . . . .
+. . . . . X . . . . . . . . . . . . . . . . . . . X . . . . . .
+. . . . . . X . . . . . . . . . . . . . . . . . X . . . . . . .
+. . . . . . . X . . . . . . . . . . . . . . . X . . . . . . . .
+. . . . . . . . X . . . . . . . . . . . . . X . . . . . . . . .
+. . . . . . . . . X . . . . . . . . . . . X . . . . . . . . . .
+. . . . . . . . . . X . . . . . . . . . X . . . . . . . . . . .
+. . . . . . . . . . . X . . . . . . . X . . . . . . . . . . . .
+. . . . . . . . . . . . X . . . . . X . . . . . . . . . . . . .
+. . . . . . . . . . . . . X . . . X . . . . . . . . . . . . . .
+. . . . . . . . . . . . . . X . X . . . . . . . . . . . . . . .
+. . . . . . . . . . . . . . . X . . . . . . . . . . . . . . . .
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+</code></pre><p>Lastly, we finish the outline of the logo by turning yet again - this time only 45 degrees - and completing the line by moving 20 forward. The end result is the very familiar shape of the Mendicant University Ruby:</p>
+<pre><code>. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+. . . . . . X X X X X X X X X X X X X X X X X X X X X . . . . . . 
+. . . . . X . . . . . . . . . . . . . . . . . . . . . X . . . . . 
+. . . . X . . . . . . . . . . . . . . . . . . . . . . . X . . . . 
+. . . X . . . . . . . . . . . . . . . . . . . . . . . . . X . . . 
+. . X . . . . . . . . . . . . . . . . . . . . . . . . . . . X . . 
+. X . . . . . . . . . . . . . . . . . . . . . . . . . . . . . X . 
+. . X . . . . . . . . . . . . . . . . . . . . . . . . . . . X . . 
+. . . X . . . . . . . . . . . . . . . . . . . . . . . . . X . . . 
+. . . . X . . . . . . . . . . . . . . . . . . . . . . . X . . . . 
+. . . . . X . . . . . . . . . . . . . . . . . . . . . X . . . . . 
+. . . . . . X . . . . . . . . . . . . . . . . . . . X . . . . . . 
+. . . . . . . X . . . . . . . . . . . . . . . . . X . . . . . . . 
+. . . . . . . . X . . . . . . . . . . . . . . . X . . . . . . . . 
+. . . . . . . . . X . . . . . . . . . . . . . X . . . . . . . . . 
+. . . . . . . . . . X . . . . . . . . . . . X . . . . . . . . . . 
+. . . . . . . . . . . X . . . . . . . . . X . . . . . . . . . . . 
+. . . . . . . . . . . . X . . . . . . . X . . . . . . . . . . . . 
+. . . . . . . . . . . . . X . . . . . X . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . X . . . X . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . X . X . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . X . . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+</code></pre><p>To test-drive your code, you can use <code>simple.logo</code> as your input file and <code>simple_out.txt</code> as your output. For your final solution, please use <code>complex.logo</code> as the input.</p>
+
+  </section>
+</div>
+</body>
+</html>

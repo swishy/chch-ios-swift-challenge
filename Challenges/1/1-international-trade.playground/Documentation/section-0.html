@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Section 1</title>
+  <meta id="xcode-display" name="xcode-display" content="render">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, maximum-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="stylesheet.css">
+</head>
+<body>
+<div class="content-wrapper">
+  <section class="section">
+    <h1 id="-1-international-trade-http-www-puzzlenode-com-puzzles-1-international-trade-"><a href="http://www.puzzlenode.com/puzzles/1-international-trade">1. International trade</a></h1>
+<p><em>This puzzle was contributed by Shane Emmons and published on March 15, 2011</em></p>
+<p>You have been given two files. The first is an XML file containing the conversion rates for exchanging one currency with another. The second is a CSV file
+containing sales data by transaction for an international business. Your goal is to
+parse all the transactions and return the grand total of all sales for a given item.</p>
+<h2 id="problem">Problem</h2>
+<p>What is the grand total of sales for item <code>DM1182</code> across all stores in <code>USD</code> currency?</p>
+<h2 id="notes">Notes</h2>
+<ul>
+<li>After each conversion, the result should be rounded to 2 decimal places
+using <a href="http://en.wikipedia.org/wiki/Rounding#Round_half_to_even">bankers rounding</a>.</li>
+<li>Some conversion rates are missing; you will need to derive them using the
+information provided.</li>
+<li>Since we are working with financial transactions, we need to avoid floating
+point arithmetic errors.</li>
+</ul>
+<h2 id="example">Example</h2>
+<p>Given a <code>RATES.xml</code> of:</p>
+<pre><code>&lt;?xml version=&quot;1.0&quot;?&gt;
+&lt;rates&gt;
+  &lt;rate&gt;
+    &lt;from&gt;AUD&lt;/from&gt;
+    &lt;to&gt;CAD&lt;/to&gt;
+    &lt;conversion&gt;1.0079&lt;/conversion&gt;
+  &lt;/rate&gt;
+  &lt;rate&gt;
+    &lt;from&gt;CAD&lt;/from&gt;
+    &lt;to&gt;USD&lt;/to&gt;
+    &lt;conversion&gt;1.0090&lt;/conversion&gt;
+  &lt;/rate&gt;
+  &lt;rate&gt;
+    &lt;from&gt;USD&lt;/from&gt;
+    &lt;to&gt;CAD&lt;/to&gt;
+    &lt;conversion&gt;0.9911&lt;/conversion&gt;
+  &lt;/rate&gt;
+&lt;/rates&gt;
+</code></pre><p>and a <code>TRANS.csv</code> of:</p>
+<pre><code>store,sku,amount
+Yonkers,DM1210,70.00 USD
+Yonkers,DM1182,19.68 AUD
+Nashua,DM1182,58.58 AUD
+Scranton,DM1210,68.76 USD
+Camden,DM1182,54.64 USD
+</code></pre><p>You program should return <code>134.22</code> as the total of <code>DM1182</code> in <code>USD</code>. You can use the sample files from this example to test your program before submitting an answer for the real dataset for this problem.</p>
+
+  </section>
+</div>
+</body>
+</html>
