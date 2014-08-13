@@ -1,4 +1,4 @@
-chch-ios-swift-challenge
+Christchurch iOS Meetup - Swift Challenge 13/08/14
 ========================
 
-Christchurch iOS Meetup 13/08/14 - Swift Programming Challenge
+Challenges are derived from http://www.puzzlenode.com/, repurposed as Swift Playgrounds.
